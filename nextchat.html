@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="개인 채팅용 NextChat를 설치하고, 사용자 지정 모델을 Hermes API로 연결합니다.">
+  <title>NextChat 연결하기 · Hermes 한국어 가이드</title>
+  <link rel="stylesheet" href="assets/guide.css">
+  <script src="assets/guide.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#guide">본문으로 바로 가기</a>
+  <header class="topbar">
+    <div class="wrap topbar-main">
+      <a class="brand" href="index.html" aria-label="Hermes 한국어 가이드 처음으로">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 5v14M6 12h12M3 5h6M15 19h6"/></svg></span>
+        hermes <small>/ UBUNTU GUIDE</small>
+      </a>
+      <span class="header-caption">설치부터 텔레그램·웹 UI까지</span>
+      <a class="header-docs" href="https://hermes-agent.nousresearch.com/docs/getting-started/installation" target="_blank" rel="noopener noreferrer">공식 문서 <span aria-hidden="true">↗</span></a>
+    </div>
+    <nav class="guide-menu" aria-label="전체 가이드">
+      <div class="wrap guide-menu-inner">
+          <a href="index.html">Ubuntu 설치</a>
+          <a href="telegram.html">텔레그램</a>
+          <a href="web-ui.html">웹 UI 비교</a>
+          <a href="open-webui.html">Open WebUI</a>
+          <a href="nextchat.html" aria-current="page">NextChat</a>
+          <a href="lobechat.html">LobeHub</a>
+      </div>
+    </nav>
+  </header>
+  <main id="top" class="wrap">
+    <div class="guide-hero">
+      <p class="breadcrumb"><a href="index.html">Ubuntu 설치 가이드</a> / <a href="web-ui.html">웹 UI</a> / NextChat 연결하기</p>
+      <h1>NextChat 연결하기</h1>
+      <p class="lead">개인 채팅용 NextChat를 설치하고, 사용자 지정 모델을 Hermes API로 연결합니다.</p>
+
+      <p class="review-note">자료 확인: 2026.10.24 · 비공식 한국어 가이드 · 실제 계정 연결 및 설치 실기 검증은 포함하지 않습니다.</p>
+    </div>
+    <div class="guide-layout" id="guide">
+      <aside class="sidebar" aria-label="이 페이지 목차"><p class="nav-label">이 페이지에서</p><nav><a href="#prepare">1. 공통 연결 준비</a><a href="#env">2. NextChat 환경 파일 만들기</a><a href="#start">3. Docker로 실행하기</a><a href="#connect">4. 사용자 지정 모델로 대화하기</a><a href="#troubleshoot">문제 해결과 종료</a><a href="#sources">공식 자료와 연결 범위</a></nav><p class="side-footer">명령은 내 Ubuntu 터미널에서 실행하세요. 이 가이드는 키를 입력받지 않습니다.</p></aside>
+      <div class="guide-content"><section class="section" id="prepare" aria-labelledby="prepare-title"><h2 id="prepare-title">1. 공통 연결 준비</h2><p>먼저 <a href="web-ui.html#prepare">공통 준비부터 API 확인까지</a> 완료하세요. 같은 Ubuntu의 Docker Engine, 브리지 주소에 바인딩한 Hermes API, API 접속 비밀키와 실제 모델 ID가 필요합니다.</p><p>웹 UI 기본 포트는 <code>3001</code>을 사용합니다. Open WebUI를 함께 실행해도 포트가 충돌하지 않습니다.</p></section>
+<section class="section" id="env" aria-labelledby="env-title"><h2 id="env-title">2. NextChat 환경 파일 만들기</h2><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="next-dir" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="next-dir">mkdir -p ~/hermes-uis/nextchat
+cd ~/hermes-uis/nextchat
+umask 077
+touch nextchat.env
+chmod 600 nextchat.env
+nano nextchat.env</code></pre></div><p>작업용 디렉터리는 저장소 밖에 만들고, 아래 내용으로 환경 파일을 준비하세요. <code>REPLACE_WITH_HERMES_API_KEY</code>를 공통 준비에서 설정한 키로 바꿉니다. 파일은 커밋하거나 공유하지 마세요.</p><div class="code-block"><div class="code-top"><span class="code-label">nextchat.env · 키와 접속 암호 교체</span><button class="copy" type="button" data-copy="next-env" aria-label="nextchat.env · 키와 접속 암호 교체 복사">복사</button></div><pre><code id="next-env">OPENAI_API_KEY=REPLACE_WITH_HERMES_API_KEY
+BASE_URL=http://host.docker.internal:8642
+CUSTOM_MODELS=-all,+hermes-agent
+DEFAULT_MODEL=hermes-agent
+CODE=REPLACE_WITH_A_SEPARATE_ACCESS_PASSWORD
+HIDE_USER_API_KEY=1</code></pre></div><p><code>CODE</code>는 NextChat 화면용 별도 접속 암호입니다. API 키와 다른 임의 문자열로 바꾸세요. 이름 있는 Hermes 프로필이면 두 <code>hermes-agent</code> 값도 실제 모델 ID로 바꿉니다.</p><div class="callout"><strong>NextChat BASE_URL에는 /v1을 붙이지 않습니다.</strong><p>NextChat가 요청 경로에 <code>/v1/chat/completions</code>를 붙입니다. Open WebUI·LobeHub의 주소를 그대로 복사하면 경로가 중복될 수 있습니다.</p></div></section>
+<section class="section" id="start" aria-labelledby="start-title"><h2 id="start-title">3. Docker로 실행하기</h2><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="next-run" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="next-run">docker run -d --name hermes-nextchat \
+  -p 127.0.0.1:3001:3000 \
+  --add-host=host.docker.internal:host-gateway \
+  --env-file nextchat.env \
+  --restart unless-stopped \
+  yidadaa/chatgpt-next-web</code></pre></div><p><a href="http://localhost:3001">http://localhost:3001</a>을 열고 <code>CODE</code>에 정한 접속 암호를 입력합니다. 이 화면은 스스로 호스팅한 NextChat이며, 공개 데모에 로컬 API 키를 입력하지 마세요.</p></section>
+<section class="section" id="connect" aria-labelledby="connect-title"><h2 id="connect-title">4. 사용자 지정 모델로 대화하기</h2><ol><li>설정에서 OpenAI 계열 제공자를 사용하고 사용자 지정 모델 목록의 <code>hermes-agent</code>를 선택합니다.</li><li>모델 목록이 다르면 <code>CUSTOM_MODELS</code>와 기존 브라우저 설정을 확인합니다. 새 대화에서도 실제 Hermes 모델 ID를 선택하세요.</li><li>기존 사용자 지정 API 주소가 저장되어 있다면 서버 설정을 사용하도록 되돌립니다.</li><li>아래 문장을 보내고 Hermes 게이트웨이에 요청이 도착하는지 확인합니다.</li></ol><div class="sample-prompt">안녕! 한국어로 답해 줘. 파일을 바꾸거나 명령을 실행하지 말고, 네가 도와줄 수 있는 일을 간단히 설명해 줘.</div><p>실제 ChatGPT 모델명 대신 Hermes가 노출하는 모델 ID를 고릅니다. Hermes가 뒤에서 사용할 모델은 기존 <code>hermes model</code> 설정을 따릅니다.</p></section>
+<section class="section" id="troubleshoot" aria-labelledby="troubleshoot-title"><h2 id="troubleshoot-title">문제 해결과 종료</h2><div class="table-scroll" role="region" aria-label="증상" tabindex="0"><table class="guide-table"><thead><tr><th scope="col">증상</th><th scope="col">해결</th></tr></thead><tbody><tr><td>404 / 잘못된 경로</td><td><code>BASE_URL</code> 끝의 <code>/v1</code>을 제거하고 컨테이너 환경을 갱신합니다.</td></tr><tr><td>hermes-agent가 없어요</td><td><code>CUSTOM_MODELS=-all,+hermes-agent</code>와 실제 API 모델 ID, 브라우저의 기존 설정을 확인합니다.</td></tr><tr><td>접속 암호를 모르겠어요</td><td>NextChat의 <code>CODE</code>와 Hermes API 키는 별개입니다. 본인이 지정한 화면용 암호를 사용하세요.</td></tr><tr><td>인증 실패 / 연결 거부</td><td>공통 API 확인 명령으로 키·게이트웨이·Docker 브리지 바인딩을 점검합니다.</td></tr></tbody></table></div><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="next-logs" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="next-logs">docker logs --tail 80 hermes-nextchat
+docker stop hermes-nextchat</code></pre></div><p>다시 켜려면 <code>docker start hermes-nextchat</code>를 실행합니다. 환경 파일 변경은 컨테이너 재생성 시 반영됩니다. 대화 기록은 브라우저 저장소에 남으므로 브라우저 데이터를 지우기 전에 내보내세요. 원격 서버는 <a href="web-ui.html#remote">SSH 안내</a>의 포트를 <code>3001</code>로 바꿉니다.</p></section>
+<section class="section" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">공식 자료와 연결 범위</h2><ul class="source-list"><li><a href="https://github.com/ChatGPTNextWeb/NextChat#environment-variables">NextChat 환경변수·Docker 실행 안내</a></li><li><a href="https://github.com/ChatGPTNextWeb/NextChat/blob/main/app/api/common.ts">NextChat의 API 프록시 경로 처리 소스</a></li><li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server">Hermes OpenAI 호환 API</a></li></ul><p>Hermes API와 NextChat의 사용자 지정 엔드포인트 기능을 조합한 텍스트 대화 안내입니다. 실제 설치 조합의 동작을 검증한 것은 아니며, 음성·이미지·자체 도구 등의 전체 호환을 뜻하지 않습니다.</p><p><a href="web-ui.html">웹 UI 비교로 돌아가기</a></p></section></div>
+    </div>
+  </main>
+  <footer class="footer"><div class="wrap site-footer">
+    <div><a class="footer-brand" href="index.html">Hermes Agent · 한국어 가이드</a><p>공식 자료를 바탕으로 정리한 비공식 문서입니다.</p></div>
+    <nav aria-label="하단 가이드"><a href="index.html">Ubuntu 설치</a><a href="telegram.html">텔레그램</a><a href="web-ui.html">웹 UI 비교</a><a href="#top">맨 위로 ↑</a></nav>
+  </div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

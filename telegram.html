@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="BotFather로 봇을 만들고 내 사용자 ID만 허용한 뒤, Ubuntu의 Hermes 게이트웨이에 연결합니다.">
+  <title>텔레그램에서 Hermes와 대화하기 · Hermes 한국어 가이드</title>
+  <link rel="stylesheet" href="assets/guide.css">
+  <script src="assets/guide.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#guide">본문으로 바로 가기</a>
+  <header class="topbar">
+    <div class="wrap topbar-main">
+      <a class="brand" href="index.html" aria-label="Hermes 한국어 가이드 처음으로">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 5v14M6 12h12M3 5h6M15 19h6"/></svg></span>
+        hermes <small>/ UBUNTU GUIDE</small>
+      </a>
+      <span class="header-caption">설치부터 텔레그램·웹 UI까지</span>
+      <a class="header-docs" href="https://hermes-agent.nousresearch.com/docs/getting-started/installation" target="_blank" rel="noopener noreferrer">공식 문서 <span aria-hidden="true">↗</span></a>
+    </div>
+    <nav class="guide-menu" aria-label="전체 가이드">
+      <div class="wrap guide-menu-inner">
+          <a href="index.html">Ubuntu 설치</a>
+          <a href="telegram.html" aria-current="page">텔레그램</a>
+          <a href="web-ui.html">웹 UI 비교</a>
+          <a href="open-webui.html">Open WebUI</a>
+          <a href="nextchat.html">NextChat</a>
+          <a href="lobechat.html">LobeHub</a>
+      </div>
+    </nav>
+  </header>
+  <main id="top" class="wrap">
+    <div class="guide-hero">
+      <p class="breadcrumb"><a href="index.html">Ubuntu 설치 가이드</a> / 텔레그램에서 Hermes와 대화하기</p>
+      <h1>텔레그램에서 Hermes와 대화하기</h1>
+      <p class="lead">BotFather로 봇을 만들고 내 사용자 ID만 허용한 뒤, Ubuntu의 Hermes 게이트웨이에 연결합니다.</p>
+      <div class="connection-flow" aria-label="연결 구조"><div><strong>텔레그램</strong><small>내 봇의 개인 대화</small></div><span class="flow-arrow" aria-hidden="true">→</span><div><strong>Hermes 게이트웨이</strong><small>내 Ubuntu에서 계속 실행</small></div><span class="flow-arrow" aria-hidden="true">→</span><div><strong>연결한 모델</strong><small>기존 모델·도구 설정 사용</small></div></div>
+      <p class="review-note">자료 확인: 2026.10.24 · 비공식 한국어 가이드 · 실제 계정 연결 및 설치 실기 검증은 포함하지 않습니다.</p>
+    </div>
+    <div class="guide-layout" id="guide">
+      <aside class="sidebar" aria-label="이 페이지 목차"><p class="nav-label">이 페이지에서</p><nav><a href="#prepare">먼저 준비할 것</a><a href="#bot">1. BotFather로 봇 만들기</a><a href="#user">2. 내 숫자 사용자 ID 확인하기</a><a href="#configure">3. Hermes에 연결 정보 등록하기</a><a href="#start">4. 게이트웨이 실행하고 첫 메시지 보내기</a><a href="#operate">5. 계속 실행하기와 그룹 사용</a><a href="#troubleshoot">연결이 막힐 때</a><a href="#sources">근거와 다음 가이드</a></nav><p class="side-footer">명령은 내 Ubuntu 터미널에서 실행하세요. 이 가이드는 키를 입력받지 않습니다.</p></aside>
+      <div class="guide-content"><section class="section" id="prepare" aria-labelledby="prepare-title"><h2 id="prepare-title">먼저 준비할 것</h2><p>기존 <a href="index.html#launch">설치·모델 연결 가이드</a>를 마치고 터미널에서 Hermes의 답변을 받은 상태로 시작하세요. 텔레그램 계정과, 계속 켜 둘 Ubuntu 컴퓨터가 필요합니다.</p><p>봇 메시지는 Ubuntu에서 실행 중인 Hermes로 전달됩니다. 컴퓨터가 꺼지거나 게이트웨이가 멈추면 답변할 수 없습니다.</p></section>
+<section class="section" id="bot" aria-labelledby="bot-title"><h2 id="bot-title">1. BotFather로 봇 만들기</h2><ol><li><a href="https://t.me/BotFather">텔레그램 공식 @BotFather</a>를 열고 <code>/newbot</code>을 보냅니다.</li><li>표시 이름과, <code>bot</code>으로 끝나는 고유한 사용자 이름을 정합니다.</li><li>발급된 봇 토큰을 안전하게 보관합니다. 다음 단계의 내 터미널 설정에서 사용합니다.</li></ol><div class="callout"><strong>봇 토큰은 비밀번호처럼 관리하세요.</strong><p>공유하거나 저장소에 커밋하지 마세요. 유출되면 BotFather의 <code>/revoke</code>로 폐기하고 새 토큰으로 설정을 바꾸세요.</p></div></section>
+<section class="section" id="user" aria-labelledby="user-title"><h2 id="user-title">2. 내 숫자 사용자 ID 확인하기</h2><p>Hermes 공식 문서가 안내하는 <a href="https://t.me/userinfobot">@userinfobot</a>에 메시지를 보내 숫자 ID를 확인합니다. <code>@사용자이름</code>이나 봇 ID가 아닌, <strong>내 계정의 숫자 ID</strong>를 기록하세요.</p><p>이 ID를 허용 목록에 넣어 내 계정으로만 봇을 사용할 수 있게 합니다. 처음에는 개인 대화로 확인하세요.</p></section>
+<section class="section" id="configure" aria-labelledby="configure-title"><h2 id="configure-title">3. Hermes에 연결 정보 등록하기</h2><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="tg-setup" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="tg-setup">hermes gateway setup</code></pre></div><p>메뉴에서 <strong>Telegram</strong>을 선택하고 봇 토큰과 허용할 사용자 ID를 입력합니다. 여러 사용자는 안내에 따라 등록하되, 전체 허용 기호 <code>*</code>는 사용하지 마세요.</p><details class="text-details"><summary>설정 파일을 직접 수정하려면</summary><p>기존 <code>~/.hermes/.env</code>를 편집하고 아래 두 항목을 추가·수정합니다. 기존 모델 설정을 지우지 말고, 예시 값을 실제 값으로 바꾸세요.</p><div class="code-block"><div class="code-top"><span class="code-label">~/.hermes/.env · 예시 값 교체</span><button class="copy" type="button" data-copy="tg-env" aria-label="~/.hermes/.env · 예시 값 교체 복사">복사</button></div><pre><code id="tg-env">TELEGRAM_BOT_TOKEN=REPLACE_WITH_BOT_TOKEN
+TELEGRAM_ALLOWED_USERS=REPLACE_WITH_YOUR_NUMERIC_USER_ID</code></pre></div></details></section>
+<section class="section" id="start" aria-labelledby="start-title"><h2 id="start-title">4. 게이트웨이 실행하고 첫 메시지 보내기</h2><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="tg-gateway" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="tg-gateway">hermes gateway</code></pre></div><ol><li>게이트웨이 터미널을 열어 둔 상태에서, 방금 만든 봇의 개인 대화를 엽니다.</li><li>텔레그램의 <strong>시작</strong> 버튼 또는 <code>/start</code>를 누르고 아래 문장을 보냅니다.</li><li>답변이 도착하는지 확인합니다. 더 많은 명령은 봇에 <code>/help</code>를 보내 확인하세요.</li></ol><div class="sample-prompt">안녕! 한국어로 답해 줘. 파일을 바꾸거나 명령을 실행하지 말고, 네가 도와줄 수 있는 일을 간단히 설명해 줘.</div><div class="callout"><strong>이미 게이트웨이가 실행 중이라면</strong><p>기존 프로세스를 종료한 뒤 다시 실행해 설정을 적용하세요. 같은 봇 토큰으로 게이트웨이를 여러 개 띄우지 마세요.</p></div></section>
+<section class="section" id="operate" aria-labelledby="operate-title"><h2 id="operate-title">5. 계속 실행하기와 그룹 사용</h2><p>터미널을 닫아도 계속 사용하려면 게이트웨이를 서비스로 운영할 수 있습니다. 먼저 개인 대화 연결을 확인한 뒤 아래 도움말에서 설치 환경의 지원 옵션을 확인하세요.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="tg-service-help" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="tg-service-help">hermes gateway --help</code></pre></div><p>상시 실행 방식은 <a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/">공식 Messaging Gateway 문서</a>를 참고하세요. 서비스와 수동 실행을 중복으로 켜지 마세요.</p><p>그룹에서는 봇을 초대하고 <code>@봇사용자이름</code>으로 먼저 호출해 보세요. 개인 대화와 달리 메시지 전달·호출 조건이 적용됩니다. 모든 그룹 메시지가 필요한 경우에만 BotFather의 <code>/setprivacy</code>를 검토하고, 변경 후 봇을 그룹에서 제거했다가 다시 추가하세요.</p></section>
+<section class="section" id="troubleshoot" aria-labelledby="troubleshoot-title"><h2 id="troubleshoot-title">연결이 막힐 때</h2><div class="table-scroll" role="region" aria-label="증상" tabindex="0"><table class="guide-table"><thead><tr><th scope="col">증상</th><th scope="col">확인할 내용</th></tr></thead><tbody><tr><td>아무 응답이 없어요</td><td>게이트웨이가 실행 중인지, 봇 토큰이 유효한지, Ubuntu에서 Telegram에 접속할 수 있는지 확인합니다. 먼저 <code>hermes doctor</code>와 게이트웨이 로그를 확인하세요.</td></tr><tr><td>unauthorized가 나와요</td><td><code>TELEGRAM_ALLOWED_USERS</code>에 내 숫자 ID가 있는지 확인하고 게이트웨이를 다시 시작합니다.</td></tr><tr><td>Conflict / getUpdates 오류</td><td>같은 토큰을 쓰는 다른 게이트웨이 또는 봇 프로그램을 종료합니다.</td></tr><tr><td>개인 대화는 되지만 그룹은 안 돼요</td><td>봇 멘션, Telegram privacy 설정과 Hermes 허용 목록을 확인합니다. 그룹 전체 권한은 모든 구성원에게 에이전트 접근을 줄 수 있습니다.</td></tr><tr><td>토큰이 유출됐어요</td><td>BotFather에서 토큰을 폐기·재발급하고 Hermes 설정을 교체합니다.</td></tr></tbody></table></div></section>
+<section class="section" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">근거와 다음 가이드</h2><ul class="source-list"><li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram">Hermes 공식 Telegram 연결 문서</a></li><li><a href="https://core.telegram.org/bots/tutorial">Telegram 공식 봇 튜토리얼</a></li><li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/">Hermes Messaging Gateway 문서</a></li></ul><p><a href="web-ui.html">브라우저로 대화하고 싶다면 웹 UI 비교 보기</a></p></section></div>
+    </div>
+  </main>
+  <footer class="footer"><div class="wrap site-footer">
+    <div><a class="footer-brand" href="index.html">Hermes Agent · 한국어 가이드</a><p>공식 자료를 바탕으로 정리한 비공식 문서입니다.</p></div>
+    <nav aria-label="하단 가이드"><a href="index.html">Ubuntu 설치</a><a href="telegram.html">텔레그램</a><a href="web-ui.html">웹 UI 비교</a><a href="#top">맨 위로 ↑</a></nav>
+  </div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

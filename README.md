@@ -1,16 +1,40 @@
 # hermes-guide
 
-Ubuntu에서 Hermes Agent를 설치하고 ChatGPT/Codex 또는 Google Gemini를 연결하는 비공식 한국어 가이드입니다.
+Ubuntu에서 Hermes Agent를 설치하고 ChatGPT/Codex 또는 Google Gemini를 연결한 뒤, 텔레그램과 웹 UI로 사용하는 비공식 한국어 가이드입니다.
 
-## 비공개로 가이드 보기
+## 가이드 보기
 
-이 가이드는 비공개 저장소에서 문서로 제공합니다. 웹사이트로 게시하지 않았습니다.
+웹사이트는 [GitHub Pages](https://s2dream.github.io/hermes-guide/)에서 볼 수 있습니다. 상단 메뉴에서 Ubuntu 설치, 텔레그램, 웹 UI 비교와 제품별 연결 안내로 바로 이동할 수 있습니다.
 
 - **GitHub에서 읽기:** 이 README에서 설치 과정과 문제 해결 방법을 바로 읽을 수 있습니다.
-- **디자인된 가이드 보기:** [index.html](index.html)을 내려받아 본인 컴퓨터의 웹브라우저에서 여세요. 별도 서버나 빌드가 필요하지 않습니다.
+- **디자인된 가이드 보기:** 저장소 전체를 내려받아 [index.html](index.html)을 본인 컴퓨터의 웹브라우저에서 여세요. 추가 페이지의 `assets/`와 상대 링크를 유지해야 합니다. 별도 서버나 빌드가 필요하지 않습니다.
 - HTML 페이지는 명령어 복사 버튼, 제공자 탭, 단계 체크와 문제 해결 아코디언을 제공합니다. 명령은 사용자가 본인의 Ubuntu 터미널에서 실행합니다.
 
 공식 자료 확인일: **2026-10-18**. 실제 Ubuntu에서 Hermes를 설치하거나 공급자 계정으로 로그인한 실기 검증을 의미하지는 않습니다. 제공자 메뉴, 모델 이름, 계정 자격, 요금·한도는 변경될 수 있으므로 최신 공식 문서를 확인하세요.
+
+## 텔레그램·웹 UI 연결 가이드
+
+기본 설치와 첫 대화를 마친 뒤 다음 HTML 페이지를 브라우저에서 여세요. 메인 설치 페이지의 상단 메뉴와 첫 화면 바로가기에서도 각 안내로 이동할 수 있습니다.
+
+| 안내 | 내용 |
+| --- | --- |
+| [텔레그램 연결](telegram.html) | BotFather 봇 생성, 숫자 사용자 ID 허용, 게이트웨이 실행, 문제 해결 |
+| [웹 UI 비교와 공통 준비](web-ui.html) | 후보 비교, 인기도 기준, Hermes API 키, Ubuntu Docker 네트워크와 API 점검 |
+| [Open WebUI 연결](open-webui.html) | Docker 실행, 관리자 연결 설정, 모델 선택 |
+| [NextChat 연결](nextchat.html) | BASE_URL 설정, 사용자 지정 모델, 화면 접속 암호 |
+| [LobeHub 연결](lobechat.html) | 구 LobeChat의 현재 Compose 설치, OpenAI 호환 제공자, 사설 IP 허용 |
+
+**선정 기준과 확인일: 2026-10-24.** 비교한 오픈소스 웹 UI 후보 중 공개 GitHub 저장소의 누적 별 수 상위 3개를 골랐습니다. 이는 실제 사용자 수나 Hermes 연동 점유율을 뜻하지 않습니다.
+
+1. [Open WebUI](https://github.com/open-webui/open-webui): 156,589개
+2. [NextChat](https://github.com/ChatGPTNextWeb/NextChat): 88,884개
+3. [LobeHub](https://github.com/lobehub/lobehub): 83,451개
+
+AnythingLLM, LibreChat, Hermes WebUI, Hugging Face Chat UI도 비교 페이지에 소개했습니다. 별 수는 GitHub 공개 API의 `stargazers_count` 조회값이며 이후 바뀔 수 있습니다. 내장 `hermes dashboard`는 별도 선택지로 소개합니다.
+
+추가 안내는 [Hermes Telegram 문서](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram), [Hermes API 서버 문서](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server), [Open WebUI 연동 문서](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/open-webui), 각 UI의 공식 문서·소스를 확인해 작성했습니다. NextChat와 LobeHub는 OpenAI 호환 엔드포인트 설정을 조합한 안내입니다. 실제 설치·로그인 및 모든 부가 기능의 호환성을 검증한 것은 아닙니다.
+
+웹 UI 3개는 Hermes와 Docker Engine이 같은 Ubuntu에 있는 구성입니다. Docker 브리지 주소에 Hermes API를 바인딩하고 `host.docker.internal`을 매핑하는 공통 준비를 먼저 따르세요. 각 UI의 환경 파일은 저장소 밖에 보관합니다.
 
 ## 0. 시작 전 준비
 
@@ -198,7 +222,11 @@ HTML 페이지는 설치 방법을 설명하는 정적 문서입니다. 로그�
 
 ## HTML 파일 구성과 접근성
 
-- `index.html`: CSS와 JavaScript가 포함된 단일 정적 페이지
+- `index.html`: 기본 설치 가이드와 연동 페이지 바로가기; 설치용 JavaScript 포함
+- `telegram.html`, `web-ui.html`, `open-webui.html`, `nextchat.html`, `lobechat.html`: 추가 연결 안내 페이지
+- `assets/guide.css`: 모든 HTML 페이지가 사용하는 공통 색상·타이포그래피·반응형 스타일
+- `assets/guide.js`: 추가 페이지의 복사·목차 기능
+- 모든 페이지에 동일한 로고·상단 메뉴·푸터 적용
 - 모바일·데스크톱 반응형 레이아웃
 - 외부 폰트·라이브러리·분석 도구·백엔드 없이 작동
 - 로그인 정보나 API 키를 수집하지 않음

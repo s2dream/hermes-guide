@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="구 LobeChat의 현재 프로젝트인 LobeHub에서 OpenAI 호환 제공자를 Hermes로 설정합니다.">
+  <title>LobeHub 연결하기 · Hermes 한국어 가이드</title>
+  <link rel="stylesheet" href="assets/guide.css">
+  <script src="assets/guide.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#guide">본문으로 바로 가기</a>
+  <header class="topbar">
+    <div class="wrap topbar-main">
+      <a class="brand" href="index.html" aria-label="Hermes 한국어 가이드 처음으로">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 5v14M6 12h12M3 5h6M15 19h6"/></svg></span>
+        hermes <small>/ UBUNTU GUIDE</small>
+      </a>
+      <span class="header-caption">설치부터 텔레그램·웹 UI까지</span>
+      <a class="header-docs" href="https://hermes-agent.nousresearch.com/docs/getting-started/installation" target="_blank" rel="noopener noreferrer">공식 문서 <span aria-hidden="true">↗</span></a>
+    </div>
+    <nav class="guide-menu" aria-label="전체 가이드">
+      <div class="wrap guide-menu-inner">
+          <a href="index.html">Ubuntu 설치</a>
+          <a href="telegram.html">텔레그램</a>
+          <a href="web-ui.html">웹 UI 비교</a>
+          <a href="open-webui.html">Open WebUI</a>
+          <a href="nextchat.html">NextChat</a>
+          <a href="lobechat.html" aria-current="page">LobeHub</a>
+      </div>
+    </nav>
+  </header>
+  <main id="top" class="wrap">
+    <div class="guide-hero">
+      <p class="breadcrumb"><a href="index.html">Ubuntu 설치 가이드</a> / <a href="web-ui.html">웹 UI</a> / LobeHub 연결하기</p>
+      <h1>LobeHub 연결하기</h1>
+      <p class="lead">구 LobeChat의 현재 프로젝트인 LobeHub에서 OpenAI 호환 제공자를 Hermes로 설정합니다.</p>
+
+      <p class="review-note">자료 확인: 2026.10.24 · 비공식 한국어 가이드 · 실제 계정 연결 및 설치 실기 검증은 포함하지 않습니다.</p>
+    </div>
+    <div class="guide-layout" id="guide">
+      <aside class="sidebar" aria-label="이 페이지 목차"><p class="nav-label">이 페이지에서</p><nav><a href="#prepare">1. 공통 준비와 설치 범위</a><a href="#install">2. 공식 Compose로 LobeHub 설치하기</a><a href="#configure">3. Hermes 주소와 사용자 지정 모델 등록</a><a href="#start">4. 실행하고 모델 선택하기</a><a href="#troubleshoot">문제 해결과 원격 접속</a><a href="#sources">공식 자료와 연결 범위</a></nav><p class="side-footer">명령은 내 Ubuntu 터미널에서 실행하세요. 이 가이드는 키를 입력받지 않습니다.</p></aside>
+      <div class="guide-content"><section class="section" id="prepare" aria-labelledby="prepare-title"><h2 id="prepare-title">1. 공통 준비와 설치 범위</h2><p>먼저 <a href="web-ui.html#prepare">공통 준비부터 API 확인까지</a> 완료하세요. 같은 Ubuntu의 Docker Engine, 브리지 주소에 바인딩한 Hermes API, API 접속 비밀키와 실제 모델 ID가 필요합니다.</p><p>현재 공식 저장소와 이미지는 <code>lobehub/lobehub</code>입니다. 최신 서버 버전에는 PostgreSQL·오브젝트 저장소·인증 등 여러 구성 요소가 필요하므로, 과거의 단일 <code>lobehub/lobe-chat</code> 실행 예시와 섞지 마세요.</p></section>
+<section class="section" id="install" aria-labelledby="install-title"><h2 id="install-title">2. 공식 Compose로 LobeHub 설치하기</h2><p>새 설치용 디렉터리를 만들고 <a href="https://lobehub.com/docs/self-hosting/platform/docker-compose">공식 Docker Compose 가이드</a>의 초기 설정을 따릅니다. 아래는 설정 스크립트를 먼저 내려받아 확인하는 방식입니다. 기존 운영 설치에서는 초기 설정을 다시 실행하지 마세요.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="lobe-install" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="lobe-install">mkdir -p ~/hermes-uis/lobehub
+cd ~/hermes-uis/lobehub
+umask 077
+curl -fsSL https://lobe.li/setup.sh -o setup.sh
+less setup.sh
+bash setup.sh -l en</code></pre></div><p><strong>Local Mode</strong>로 구성하고 생성된 접속 주소·키를 보관합니다. Docker 실행 질문이 나오면 먼저 다음 단계의 Hermes 연결 설정을 마친 뒤 시작하세요. 이 설치는 여러 이미지 다운로드와 디스크 공간이 필요합니다.</p><div class="callout"><strong>포트와 기존 설치를 확인하세요.</strong><p>현재 공식 Compose에는 <code>3210</code>, <code>9000</code>, <code>9001</code>, <code>8787</code>, <code>8788</code> 등의 서비스가 있습니다. 최초 시작 전에 Compose의 공개 포트를 확인하고 로컬용 포트는 <code>127.0.0.1:호스트포트:컨테이너포트</code>로 제한하세요. DB·Redis에 외부 접속이 필요 없다면 해당 <code>ports</code> 항목을 제거할 수 있습니다.</p></div></section>
+<section class="section" id="configure" aria-labelledby="configure-title"><h2 id="configure-title">3. Hermes 주소와 사용자 지정 모델 등록</h2><p>생성된 LobeHub의 <code>.env</code>를 열어 기존 DB·인증·저장소 설정을 유지하고 아래 값을 추가·수정합니다.</p><div class="code-block"><div class="code-top"><span class="code-label">.env · 기존 설정에 추가</span><button class="copy" type="button" data-copy="lobe-env" aria-label=".env · 기존 설정에 추가 복사">복사</button></div><pre><code id="lobe-env">OPENAI_API_KEY=REPLACE_WITH_HERMES_API_KEY
+OPENAI_PROXY_URL=http://host.docker.internal:8642/v1
+OPENAI_MODEL_LIST=-all,+hermes-agent
+SSRF_ALLOW_IP_ADDRESS_LIST=REPLACE_WITH_DOCKER_BRIDGE_IP</code></pre></div><p>API 키와 실제 모델 ID를 바꿉니다. <code>REPLACE_WITH_DOCKER_BRIDGE_IP</code>에는 <a href="web-ui.html#docker-network">공통 Docker 준비</a>에서 확인한 <code>172.17.0.1</code> 같은 실제 주소를 넣으세요. 기존 허용 IP 목록이 있으면 쉼표로 추가합니다. 사설 IP 차단을 전체 해제하는 대신 해당 주소만 허용합니다.</p><p>같은 디렉터리의 <code>docker-compose.override.yml</code>에 아래 호스트 매핑을 추가합니다. 공식 Compose 서비스 이름은 <code>lobe</code>입니다. 이미 override 파일이 있으면 기존 내용을 유지하고 이 설정을 병합하세요.</p><div class="code-block"><div class="code-top"><span class="code-label">docker-compose.override.yml</span><button class="copy" type="button" data-copy="lobe-override" aria-label="docker-compose.override.yml 복사">복사</button></div><pre><code id="lobe-override">services:
+  lobe:
+    extra_hosts:
+      - &quot;host.docker.internal:host-gateway&quot;</code></pre></div><div class="callout"><strong>환경 파일이 컨테이너로 전달되는지 확인하세요.</strong><p>현재 공식 Compose의 <code>lobe</code> 서비스는 <code>env_file: .env</code>를 사용합니다. 다른 템플릿에서는 해당 환경변수를 서비스에 직접 전달해야 할 수 있습니다. 단순한 YAML 치환용 <code>.env</code>만으로는 컨테이너에 자동 주입되지 않습니다.</p></div></section>
+<section class="section" id="start" aria-labelledby="start-title"><h2 id="start-title">4. 실행하고 모델 선택하기</h2><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="lobe-start" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="lobe-start">docker compose up -d
+docker compose ps
+docker compose logs --tail 80 lobe</code></pre></div><ol><li><a href="http://localhost:3210">http://localhost:3210</a>을 열고 공식 설치 과정에서 구성한 인증 방식으로 로그인합니다.</li><li><strong>App Settings → AI Providers → OpenAI</strong>에서 제공자를 켭니다. 필요하면 주소와 Hermes API 접속 키를 입력합니다.</li><li>사용자 지정 모델 ID <code>hermes-agent</code> 또는 실제 <code>/v1/models</code> 결과를 추가·활성화하고 Agent 설정에서 선택합니다.</li><li>기본 텍스트 대화로 아래 문장을 보내 확인합니다. 연결 확인 기능이 다른 기본 모델을 시험하면, 실제 Hermes 모델을 선택한 대화 결과로 판단하세요.</li></ol><div class="sample-prompt">안녕! 한국어로 답해 줘. 파일을 바꾸거나 명령을 실행하지 말고, 네가 도와줄 수 있는 일을 간단히 설명해 줘.</div><p>Hermes의 도구는 API 서버가 처리합니다. LobeHub 자체 플러그인·도구·에이전트 게이트웨이는 별도 기능이므로, 처음 연결할 때는 추가 도구를 켜지 않은 텍스트 대화부터 확인하세요.</p></section>
+<section class="section" id="troubleshoot" aria-labelledby="troubleshoot-title"><h2 id="troubleshoot-title">문제 해결과 원격 접속</h2><div class="table-scroll" role="region" aria-label="증상" tabindex="0"><table class="guide-table"><thead><tr><th scope="col">증상</th><th scope="col">확인할 내용</th></tr></thead><tbody><tr><td>SSRF / private IP 차단</td><td>실제 Docker 브리지 IP를 <code>SSRF_ALLOW_IP_ADDRESS_LIST</code>에 넣고 <code>lobe</code> 컨테이너를 재생성합니다.</td></tr><tr><td>host.docker.internal을 찾지 못해요</td><td><code>extra_hosts</code>가 실제 <code>lobe</code> 서비스에 적용되었는지 확인합니다.</td></tr><tr><td>모델이 없거나 지원되지 않아요</td><td><code>OPENAI_MODEL_LIST</code>와 실제 Hermes 모델 ID를 맞추고 Agent에서도 해당 모델을 선택합니다.</td></tr><tr><td>로그인·DB·업로드 오류</td><td>LobeHub 설치 구성 문제부터 공식 Compose 문서로 확인합니다. Hermes의 API 인증과는 별도입니다.</td></tr></tbody></table></div><p>원격 Ubuntu는 SSH로 UI 포트 <code>3210</code>을 전달하세요. 현재 LobeHub의 Gateway Mode나 업로드도 사용하려면 Local Mode가 출력한 추가 서비스 주소에 맞춰 <code>8787</code>, <code>9000</code> 등을 전달해야 할 수 있습니다. 공개 서비스가 필요하면 공식 Domain Mode의 인증·HTTPS 설정을 따르세요.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="lobe-ssh" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="lobe-ssh">ssh -N \
+  -L 3210:127.0.0.1:3210 \
+  -L 8787:127.0.0.1:8787 \
+  -L 9000:127.0.0.1:9000 \
+  USER@SERVER</code></pre></div><p>종료는 설치 디렉터리에서 <code>docker compose stop</code>, 재시작은 <code>docker compose start</code>입니다. DB와 업로드 데이터는 보존하세요.</p></section>
+<section class="section" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">공식 자료와 연결 범위</h2><ul class="source-list"><li><a href="https://github.com/lobehub/lobehub">LobeHub 현재 저장소</a></li><li><a href="https://lobehub.com/docs/self-hosting/platform/docker-compose">공식 Compose 설치</a></li><li><a href="https://lobehub.com/docs/self-hosting/environment-variables/model-provider">모델 제공자 환경변수</a></li><li><a href="https://lobehub.com/docs/usage/providers/openai">OpenAI 제공자 화면 설정</a></li><li><a href="https://github.com/lobehub/lobehub/blob/main/.env.example">사설 IP 허용 목록 설정 예시</a></li><li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server">Hermes OpenAI 호환 API</a></li></ul><p>공식 설정 기능을 조합한 연결 안내이며 실제 설치·로그인 조합은 검증하지 않았습니다. NextChat·LobeHub는 Open WebUI처럼 Hermes 전용 연결 문서가 있는 경우와 구분해 보세요.</p><p><a href="web-ui.html">웹 UI 비교로 돌아가기</a></p></section></div>
+    </div>
+  </main>
+  <footer class="footer"><div class="wrap site-footer">
+    <div><a class="footer-brand" href="index.html">Hermes Agent · 한국어 가이드</a><p>공식 자료를 바탕으로 정리한 비공식 문서입니다.</p></div>
+    <nav aria-label="하단 가이드"><a href="index.html">Ubuntu 설치</a><a href="telegram.html">텔레그램</a><a href="web-ui.html">웹 UI 비교</a><a href="#top">맨 위로 ↑</a></nav>
+  </div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

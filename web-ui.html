@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="연동 가능한 웹 UI를 비교하고, GitHub 별 수가 가장 많은 세 후보의 연결 방법을 안내합니다.">
+  <title>Hermes에 연결할 웹 UI 고르기 · Hermes 한국어 가이드</title>
+  <link rel="stylesheet" href="assets/guide.css">
+  <script src="assets/guide.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#guide">본문으로 바로 가기</a>
+  <header class="topbar">
+    <div class="wrap topbar-main">
+      <a class="brand" href="index.html" aria-label="Hermes 한국어 가이드 처음으로">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 5v14M6 12h12M3 5h6M15 19h6"/></svg></span>
+        hermes <small>/ UBUNTU GUIDE</small>
+      </a>
+      <span class="header-caption">설치부터 텔레그램·웹 UI까지</span>
+      <a class="header-docs" href="https://hermes-agent.nousresearch.com/docs/getting-started/installation" target="_blank" rel="noopener noreferrer">공식 문서 <span aria-hidden="true">↗</span></a>
+    </div>
+    <nav class="guide-menu" aria-label="전체 가이드">
+      <div class="wrap guide-menu-inner">
+          <a href="index.html">Ubuntu 설치</a>
+          <a href="telegram.html">텔레그램</a>
+          <a href="web-ui.html" aria-current="page">웹 UI 비교</a>
+          <a href="open-webui.html">Open WebUI</a>
+          <a href="nextchat.html">NextChat</a>
+          <a href="lobechat.html">LobeHub</a>
+      </div>
+    </nav>
+  </header>
+  <main id="top" class="wrap">
+    <div class="guide-hero">
+      <p class="breadcrumb"><a href="index.html">Ubuntu 설치 가이드</a> / Hermes에 연결할 웹 UI 고르기</p>
+      <h1>Hermes에 연결할 웹 UI 고르기</h1>
+      <p class="lead">연동 가능한 웹 UI를 비교하고, GitHub 별 수가 가장 많은 세 후보의 연결 방법을 안내합니다.</p>
+      <div class="connection-flow" aria-label="연결 구조"><div><strong>웹 브라우저</strong><small>선택한 UI에서 대화</small></div><span class="flow-arrow" aria-hidden="true">→</span><div><strong>웹 UI 서버</strong><small>Hermes API로 요청 전달</small></div><span class="flow-arrow" aria-hidden="true">→</span><div><strong>Hermes API</strong><small>내 Ubuntu에서 모델·도구 실행</small></div></div>
+      <p class="review-note">자료 확인: 2026.10.24 · 비공식 한국어 가이드 · 실제 계정 연결 및 설치 실기 검증은 포함하지 않습니다.</p>
+    </div>
+    <div class="guide-layout" id="guide">
+      <aside class="sidebar" aria-label="이 페이지 목차"><p class="nav-label">이 페이지에서</p><nav><a href="#compare">어떤 웹 UI를 연결할 수 있나요?</a><a href="#native">추가 설치 없이 관리 화면부터 보고 싶다면</a><a href="#prepare">공통 준비: Ubuntu와 Docker</a><a href="#api">1. Hermes API와 비밀키 설정</a><a href="#docker-network">2. Docker에서 호스트의 Hermes에 연결하기</a><a href="#verify">3. 게이트웨이를 시작하고 API 확인</a><a href="#remote">원격 Ubuntu에서 실행한다면</a><a href="#troubleshoot">공통 연결 문제</a><a href="#sources">확인한 공식 자료</a></nav><p class="side-footer">명령은 내 Ubuntu 터미널에서 실행하세요. 이 가이드는 키를 입력받지 않습니다.</p></aside>
+      <div class="guide-content"><section class="section" id="compare" aria-labelledby="compare-title"><h2 id="compare-title">어떤 웹 UI를 연결할 수 있나요?</h2><p>Hermes는 <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server">OpenAI 호환 API 서버</a>를 제공합니다. Open WebUI, NextChat, LobeHub, LibreChat 같은 UI가 이 API로 메시지를 전달하면, 도구와 파일 작업은 <strong>Hermes가 실행되는 Ubuntu</strong>에서 처리됩니다.</p><div class="table-scroll" role="region" aria-label="2026-10-24 조회 · 아래 후보들의 공개 GitHub 저장소 기준" tabindex="0"><table class="guide-table"><caption>2026-10-24 조회 · 아래 후보들의 공개 GitHub 저장소 기준</caption><thead><tr><th scope="col">프로젝트</th><th scope="col">GitHub 별</th><th scope="col">특징·연결 방식</th><th scope="col">안내</th></tr></thead><tbody><tr><td><a href="https://github.com/open-webui/open-webui">Open WebUI</a></td><td><span class="stars">156,589</span></td><td>대화 관리·사용자 계정, Hermes 전용 공식 연결 문서</td><td><a href="open-webui.html">연동 가이드</a></td></tr><tr><td><a href="https://github.com/ChatGPTNextWeb/NextChat">NextChat</a></td><td><span class="stars">88,884</span></td><td>간단한 개인 채팅 화면과 프롬프트 관리</td><td><a href="nextchat.html">연동 가이드</a></td></tr><tr><td><a href="https://github.com/lobehub/lobehub">LobeHub (구 LobeChat)</a></td><td><span class="stars">83,451</span></td><td>에이전트별 설정·지식 관리, 설치 구성은 복잡한 편</td><td><a href="lobechat.html">연동 가이드</a></td></tr><tr><td><a href="https://github.com/Mintplex-Labs/anything-llm">AnythingLLM</a></td><td><span class="stars">67,493</span></td><td>문서·워크스페이스 중심, Generic OpenAI 연결</td><td><a href="https://github.com/Mintplex-Labs/anything-llm">프로젝트 문서</a></td></tr><tr><td><a href="https://github.com/LibreChat-AI/LibreChat">LibreChat</a></td><td><span class="stars">46,222</span></td><td>여러 제공자와 사용자 관리, custom endpoint 설정</td><td><a href="https://github.com/LibreChat-AI/LibreChat">프로젝트 문서</a></td></tr><tr><td><a href="https://github.com/nesquena/hermes-webui">Hermes WebUI</a></td><td><span class="stars">19,141</span></td><td>Hermes 전용 커뮤니티 UI, 자체 설치·연결 방식</td><td><a href="https://github.com/nesquena/hermes-webui">프로젝트 문서</a></td></tr><tr><td><a href="https://github.com/huggingface/chat-ui">Hugging Face Chat UI</a></td><td><span class="stars">10,995</span></td><td>OpenAI 호환 엔드포인트를 사용하는 채팅 UI</td><td><a href="https://github.com/huggingface/chat-ui">프로젝트 문서</a></td></tr></tbody></table></div><p><strong>인기도 기준:</strong> 비교한 후보 중 GitHub 누적 별 수 상위 3개를 선정했습니다. 별 수는 프로젝트 전체 관심도의 대리 지표이며, 실제 사용자 수나 Hermes 연동 점유율 순위는 아닙니다. 데스크톱 전용 앱은 비교 대상에서 제외했습니다.</p><p>별 수는 <a href="https://api.github.com/repos/open-webui/open-webui">GitHub 공개 API</a>의 <code>stargazers_count</code>로 조회했습니다. 각 프로젝트 이름은 해당 저장소로 연결되며, 수치는 이후 달라질 수 있습니다.</p></section>
+<section class="section" id="native" aria-labelledby="native-title"><h2 id="native-title">추가 설치 없이 관리 화면부터 보고 싶다면</h2><p>Hermes에는 별도 제품 설치 없이 여는 <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/web-dashboard">내장 대시보드</a>도 있습니다. 설정·세션 관리가 목적이면 먼저 이 기능을 살펴보세요. 비교표의 커뮤니티 Hermes WebUI와는 다른 기능입니다.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="native-dashboard" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="native-dashboard">hermes dashboard</code></pre></div><p>기본 주소는 <code>http://127.0.0.1:9119</code>입니다. 브라우저 Chat 탭은 지원 버전에서 <code>hermes dashboard --tui</code>로 켭니다. 선택 의존성이 없으면 출력되는 설치 안내를 따르세요.</p></section>
+<section class="section" id="prepare" aria-labelledby="prepare-title"><h2 id="prepare-title">공통 준비: Ubuntu와 Docker</h2><p><a href="index.html#launch">설치·모델 연결</a>를 마치고 Hermes가 답변하는지 먼저 확인합니다. 세 연동 안내는 <strong>Hermes와 Docker Engine이 같은 Ubuntu 호스트에 있는 구성</strong>을 기준으로 합니다.</p><p>Docker가 없다면 <a href="https://docs.docker.com/engine/install/ubuntu/">Docker 공식 Ubuntu 설치 안내</a>를 먼저 따르세요. LobeHub는 Docker Compose 플러그인도 필요합니다.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="docker-check" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="docker-check">docker --version
+docker compose version</code></pre></div><div class="callout"><strong>웹 UI의 기능과 Hermes 도구는 별개입니다.</strong><p>기본 텍스트 대화 연결부터 확인하세요. UI의 자체 검색·도구 호출·이미지 생성·지식베이스가 모두 Hermes API에 대응하는 것은 아닙니다.</p></div></section>
+<section class="section" id="api" aria-labelledby="api-title"><h2 id="api-title">1. Hermes API와 비밀키 설정</h2><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="api-generate" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="api-generate">openssl rand -hex 32</code></pre></div><p>출력된 임의 문자열을 API 전용 비밀키로 사용합니다. <code>~/.hermes/.env</code>를 열고 기존 내용은 유지하면서 아래 항목을 추가·수정하세요. <code>REPLACE_WITH_RANDOM_SECRET</code>는 방금 생성한 문자열로 바꿉니다.</p><div class="code-block"><div class="code-top"><span class="code-label">~/.hermes/.env · 기존 내용 유지</span><button class="copy" type="button" data-copy="api-env" aria-label="~/.hermes/.env · 기존 내용 유지 복사">복사</button></div><pre><code id="api-env">API_SERVER_ENABLED=true
+API_SERVER_KEY=REPLACE_WITH_RANDOM_SECRET
+API_SERVER_HOST=127.0.0.1
+API_SERVER_PORT=8642</code></pre></div><div class="callout"><strong>여기의 API 키는 Hermes 접속용입니다.</strong><p>Open WebUI 등의 <code>OPENAI_API_KEY</code> 필드에도 이 키를 넣습니다. 모델 제공자의 API 키나 ChatGPT 로그인 토큰을 UI에 다시 넣는 절차가 아닙니다.</p></div></section>
+<section class="section" id="docker-network" aria-labelledby="docker-network-title"><h2 id="docker-network-title">2. Docker에서 호스트의 Hermes에 연결하기</h2><p>Docker 컨테이너의 <code>127.0.0.1</code>은 컨테이너 자신을 뜻합니다. 따라서 Hermes가 루프백에만 바인딩되어 있으면 호스트 이름을 추가하는 것만으로 연결되지 않습니다.</p><p>아래 명령으로 Docker 기본 브리지의 게이트웨이 주소를 확인합니다. Docker가 실행 중인 Ubuntu 터미널에서 수행하세요.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="bridge-setup" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="bridge-setup">HERMES_DOCKER_HOST=$(docker network inspect bridge --format &#x27;{{(index .IPAM.Config 0).Gateway}}&#x27;)
+printf &#x27;Hermes API bind address: %s\n&#x27; &quot;$HERMES_DOCKER_HOST&quot;</code></pre></div><p>출력 예시는 <code>172.17.0.1</code>이며 실제 값은 환경마다 다릅니다. <code>~/.hermes/.env</code>의 <code>API_SERVER_HOST=127.0.0.1</code>을 <code>API_SERVER_HOST=실제로_출력된_IP</code>로 수정하세요. Hermes는 <strong>이 브리지 주소에서만</strong> 수신합니다. 비어 있거나 Docker 오류가 나오면 먼저 Docker를 점검하세요. API 키와 포트 설정은 앞 단계 값을 유지합니다.</p><p>각 UI 컨테이너에는 <code>host.docker.internal:host-gateway</code> 매핑을 추가합니다. UI의 연결 주소는 <code>http://host.docker.internal:8642/v1</code>입니다. <code>API_SERVER_HOST=0.0.0.0</code>으로 바꿀 필요가 없습니다.</p><div class="callout"><strong>이미 다른 UI가 Hermes를 사용 중이라면</strong><p>API 수신 주소를 바꾸면 기존 <code>127.0.0.1:8642</code> 연결도 새 브리지 주소로 바꿔야 합니다. Docker 없이 사용하던 구성으로 돌아가려면 같은 파일의 값을 <code>API_SERVER_HOST=127.0.0.1</code>로 복원한 뒤 게이트웨이를 재시작하세요.</p></div></section>
+<section class="section" id="verify" aria-labelledby="verify-title"><h2 id="verify-title">3. 게이트웨이를 시작하고 API 확인</h2><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="api-gateway" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="api-gateway">hermes gateway</code></pre></div><p>기존 게이트웨이가 있으면 기존 프로세스를 먼저 종료하고 한 번만 실행합니다. 텔레그램을 연결한 게이트웨이도 동일한 프로세스에서 API를 제공할 수 있습니다.</p><p>게이트웨이 터미널은 열어 두고, <strong>새 Ubuntu 터미널</strong>에서 다음 명령을 실행합니다. 비밀키 입력은 화면에 표시되지 않으며 셸 기록에 실제 키를 적지 않습니다.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="api-verify" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="api-verify">HERMES_DOCKER_HOST=$(docker network inspect bridge --format &#x27;{{(index .IPAM.Config 0).Gateway}}&#x27;)
+curl --fail --silent --show-error &quot;http://$HERMES_DOCKER_HOST:8642/health&quot;
+read -rsp &quot;Hermes API key: &quot; HERMES_API_KEY; printf &#x27;\n&#x27;
+curl --fail --silent --show-error \
+  -H &quot;Authorization: Bearer $HERMES_API_KEY&quot; \
+  &quot;http://$HERMES_DOCKER_HOST:8642/v1/models&quot;
+unset HERMES_API_KEY</code></pre></div><p><code>/health</code>의 상태와 <code>/v1/models</code>의 모델 목록을 확인합니다. 기본 프로필의 모델 ID는 <code>hermes-agent</code>이며 프로필·설정에 따라 다를 수 있습니다. 아래 제품별 안내에서는 실제 목록에 나온 ID를 사용하세요.</p><div class="guide-links"><a href="open-webui.html">Open WebUI 연결 안내<small>대화·사용자 관리가 필요한 경우</small></a><a href="nextchat.html">NextChat 연결 안내<small>개인 채팅 화면으로 시작하는 경우</small></a><a href="lobechat.html">LobeHub 연결 안내<small>에이전트별 설정을 함께 관리하는 경우</small></a></div></section>
+<section class="section" id="remote" aria-labelledby="remote-title"><h2 id="remote-title">원격 Ubuntu에서 실행한다면</h2><p>브라우저는 UI 포트로 접속하고, Hermes API는 Ubuntu 내부 연결로 둡니다. 로컬 컴퓨터의 터미널에서 필요한 UI 포트만 SSH로 전달하세요.</p><div class="code-block"><div class="code-top"><span class="code-label">Ubuntu 터미널 · Bash</span><button class="copy" type="button" data-copy="ssh-ui" aria-label="Ubuntu 터미널 · Bash 복사">복사</button></div><pre><code id="ssh-ui">ssh -N -L 3000:127.0.0.1:3000 USER@SERVER</code></pre></div><p>이후 내 브라우저에서 <code>http://localhost:3000</code>을 엽니다. <code>USER@SERVER</code>를 내 서버 정보로 바꾸세요. NextChat는 <code>3001</code>, LobeHub는 <code>3210</code>으로 양쪽 포트를 바꿉니다. LobeHub의 추가 서비스는 해당 페이지의 원격 접속 안내도 확인하세요.</p></section>
+<section class="section" id="troubleshoot" aria-labelledby="troubleshoot-title"><h2 id="troubleshoot-title">공통 연결 문제</h2><div class="table-scroll" role="region" aria-label="증상" tabindex="0"><table class="guide-table"><thead><tr><th scope="col">증상</th><th scope="col">확인할 내용</th></tr></thead><tbody><tr><td>Connection refused</td><td>게이트웨이 실행 여부와 출력된 수신 주소를 확인합니다. Docker 브리지 주소 설정 후 재시작했는지 확인하세요.</td></tr><tr><td>401 / 인증 실패</td><td>UI에 입력한 키가 Hermes의 <code>API_SERVER_KEY</code>와 같은지 확인합니다.</td></tr><tr><td>404 / 모델이 안 보여요</td><td>제품별 URL의 <code>/v1</code> 처리 차이와 실제 <code>/v1/models</code> 결과를 확인합니다.</td></tr><tr><td>응답이 오래 걸려요</td><td>Hermes가 서버에서 작업 중일 수 있습니다. 게이트웨이 로그를 확인하고 기본 텍스트 대화부터 시험하세요.</td></tr></tbody></table></div></section>
+<section class="section" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">확인한 공식 자료</h2><ul class="source-list"><li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server">Hermes API 서버</a></li><li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/open-webui">Hermes의 Open WebUI 연동 문서</a></li><li><a href="https://docs.docker.com/engine/network/">Docker 네트워크</a></li><li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/web-dashboard">Hermes 내장 대시보드</a></li></ul><p>제품별 설치·연결 근거는 각 연동 페이지에 함께 링크했습니다. 실제 계정 연결은 검증하지 않았으며, 화면의 메뉴명과 이미지 태그는 바뀔 수 있습니다.</p></section></div>
+    </div>
+  </main>
+  <footer class="footer"><div class="wrap site-footer">
+    <div><a class="footer-brand" href="index.html">Hermes Agent · 한국어 가이드</a><p>공식 자료를 바탕으로 정리한 비공식 문서입니다.</p></div>
+    <nav aria-label="하단 가이드"><a href="index.html">Ubuntu 설치</a><a href="telegram.html">텔레그램</a><a href="web-ui.html">웹 UI 비교</a><a href="#top">맨 위로 ↑</a></nav>
+  </div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
