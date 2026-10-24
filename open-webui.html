@@ -6,7 +6,8 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="대화 관리와 사용자 계정을 갖춘 웹 화면을 Hermes의 OpenAI 호환 API에 연결합니다.">
   <title>Open WebUI 연결하기 · Hermes 한국어 가이드</title>
-  <link rel="stylesheet" href="assets/guide.css">
+  <link rel="stylesheet" href="assets/guide.css?v=2">
+  <script src="assets/navigation.js" defer></script>
   <script src="assets/guide.js" defer></script>
 </head>
 <body>
@@ -17,19 +18,21 @@
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14M18 5v14M6 12h12M3 5h6M15 19h6"/></svg></span>
         hermes <small>/ UBUNTU GUIDE</small>
       </a>
-      <span class="header-caption">설치부터 텔레그램·웹 UI까지</span>
+      <nav class="primary-nav" aria-label="전체 가이드">
+        <a class="primary-link" href="index.html"><span class="desktop-label">Ubuntu </span>설치</a>
+        <a class="primary-link" href="telegram.html">텔레그램</a>
+        <details class="nav-group">
+          <summary class="primary-link" aria-current="true">웹 UI <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="nav-panel">
+            <a href="web-ui.html"><span>웹 UI 비교·공통 준비</span><small>UI 선택과 Hermes API 연결 설정</small></a>
+            <a href="open-webui.html" aria-current="page"><span>Open WebUI</span><small>대화 관리와 사용자 계정</small></a>
+            <a href="nextchat.html"><span>NextChat</span><small>개인 채팅과 사용자 지정 모델</small></a>
+            <a href="lobechat.html"><span>LobeHub</span><small>에이전트별 설정과 연결</small></a>
+          </div>
+        </details>
+      </nav>
       <a class="header-docs" href="https://hermes-agent.nousresearch.com/docs/getting-started/installation" target="_blank" rel="noopener noreferrer">공식 문서 <span aria-hidden="true">↗</span></a>
     </div>
-    <nav class="guide-menu" aria-label="전체 가이드">
-      <div class="wrap guide-menu-inner">
-          <a href="index.html">Ubuntu 설치</a>
-          <a href="telegram.html">텔레그램</a>
-          <a href="web-ui.html">웹 UI 비교</a>
-          <a href="open-webui.html" aria-current="page">Open WebUI</a>
-          <a href="nextchat.html">NextChat</a>
-          <a href="lobechat.html">LobeHub</a>
-      </div>
-    </nav>
   </header>
   <main id="top" class="wrap">
     <div class="guide-hero">
@@ -64,7 +67,7 @@ ENABLE_OLLAMA_API=false</code></pre></div></section>
   </main>
   <footer class="footer"><div class="wrap site-footer">
     <div><a class="footer-brand" href="index.html">Hermes Agent · 한국어 가이드</a><p>공식 자료를 바탕으로 정리한 비공식 문서입니다.</p></div>
-    <nav aria-label="하단 가이드"><a href="index.html">Ubuntu 설치</a><a href="telegram.html">텔레그램</a><a href="web-ui.html">웹 UI 비교</a><a href="#top">맨 위로 ↑</a></nav>
+    <nav aria-label="하단 가이드"><a href="index.html">Ubuntu 설치</a><a href="telegram.html">텔레그램</a><a href="web-ui.html">웹 UI 비교</a><a href="https://hermes-agent.nousresearch.com/docs/getting-started/installation" target="_blank" rel="noopener noreferrer">공식 문서 ↗</a><a href="#top">맨 위로 ↑</a></nav>
   </div></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>

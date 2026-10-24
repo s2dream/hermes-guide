@@ -4,7 +4,7 @@ Ubuntu에서 Hermes Agent를 설치하고 ChatGPT/Codex 또는 Google Gemini를 
 
 ## 가이드 보기
 
-웹사이트는 [GitHub Pages](https://s2dream.github.io/hermes-guide/)에서 볼 수 있습니다. 상단 메뉴에서 Ubuntu 설치, 텔레그램, 웹 UI 비교와 제품별 연결 안내로 바로 이동할 수 있습니다.
+웹사이트는 [GitHub Pages](https://s2dream.github.io/hermes-guide/)에서 볼 수 있습니다. 상단 메뉴는 Ubuntu 설치, 텔레그램, 웹 UI의 세 범주로 구성되어 있습니다. 웹 UI 메뉴를 펼치면 비교 페이지와 제품별 연결 안내로 이동할 수 있습니다.
 
 - **GitHub에서 읽기:** 이 README에서 설치 과정과 문제 해결 방법을 바로 읽을 수 있습니다.
 - **디자인된 가이드 보기:** 저장소 전체를 내려받아 [index.html](index.html)을 본인 컴퓨터의 웹브라우저에서 여세요. 추가 페이지의 `assets/`와 상대 링크를 유지해야 합니다. 별도 서버나 빌드가 필요하지 않습니다.
@@ -226,6 +226,7 @@ HTML 페이지는 설치 방법을 설명하는 정적 문서입니다. 로그�
 - `telegram.html`, `web-ui.html`, `open-webui.html`, `nextchat.html`, `lobechat.html`: 추가 연결 안내 페이지
 - `assets/guide.css`: 모든 HTML 페이지가 사용하는 공통 색상·타이포그래피·반응형 스타일
 - `assets/guide.js`: 추가 페이지의 복사·목차 기능
+- `assets/navigation.js`: 공통 웹 UI 펼침 메뉴의 Escape·바깥 클릭·포커스 처리; JavaScript 없이도 펼치기와 링크 이동 가능
 - 모든 페이지에 동일한 로고·상단 메뉴·푸터 적용
 - 모바일·데스크톱 반응형 레이아웃
 - 외부 폰트·라이브러리·분석 도구·백엔드 없이 작동
