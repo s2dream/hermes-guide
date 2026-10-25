@@ -1,0 +1,2 @@
+# Optional: install in the prepared Hermes Python environment only.
+pypdf==6.21.2

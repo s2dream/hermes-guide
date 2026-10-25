@@ -205,6 +205,9 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Local research pilot: tokens, jobs and temporary isolated Hermes homes.
+.research/
+
 # Ruff stuff:
 .ruff_cache/
 
