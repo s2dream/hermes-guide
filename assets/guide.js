@@ -30,7 +30,7 @@
       button.focus({preventScroll: true});
       if (copied) {
         button.textContent = '복사됨 ✓';
-        announce('복사했어요. 명령어와 예시 값을 확인한 뒤 내 터미널이나 설정 파일에 붙여넣으세요.');
+        announce('내용을 복사했어요. 예시 값과 적용 범위를 확인한 뒤 사용하세요.');
         setTimeout(() => { button.textContent = '복사'; }, 2200);
       } else {
         const range = document.createRange();

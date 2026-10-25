@@ -4,7 +4,7 @@ Hermes Agent의 Ubuntu 설치·모델 설정부터 텔레그램·웹 UI 연동, 
 
 ## 가이드 보기
 
-웹사이트는 [GitHub Pages](https://s2dream.github.io/hermes-guide/)에서 볼 수 있습니다. 상단 메뉴는 Ubuntu 설치, 텔레그램, 웹 UI, 서비스 설계의 네 범주로 구성되어 있습니다. 웹 UI 메뉴를 펼치면 비교 페이지와 제품별 연결 안내로 이동할 수 있습니다.
+웹사이트는 [GitHub Pages](https://s2dream.github.io/hermes-guide/)에서 볼 수 있습니다. 상단 메뉴는 Ubuntu 설치, 텔레그램, 웹 UI, 서비스 설계의 네 범주로 구성되어 있습니다. 웹 UI 메뉴에는 제품별 연결 안내가, 서비스 설계 메뉴에는 설계 가이드와 정치·연예 사례 연구가 있습니다.
 
 - **GitHub에서 읽기:** 이 README에서 설치 과정과 문제 해결 방법을 바로 읽을 수 있습니다.
 - **디자인된 가이드 보기:** 저장소 전체를 내려받아 [index.html](index.html)을 본인 컴퓨터의 웹브라우저에서 여세요. 추가 페이지의 `assets/`와 상대 링크를 유지해야 합니다. 별도 서버나 빌드가 필요하지 않습니다.
@@ -48,6 +48,21 @@ AnythingLLM, LibreChat, Hermes WebUI, Hugging Face Chat UI도 비교 페이지�
 - 데이터 모델·보존·예산·관측, 단계별 개발과 출시 평가
 
 기본안은 초대형 공개 웹 탐색 MVP입니다. 사용자 10명·동시 작업 3개 등의 수치는 논의를 위한 제안이며 측정 결과나 확정 요구사항이 아닙니다. 현재 저장소에는 서비스 백엔드·회원 시스템·조사 API가 구현되어 있지 않습니다. 실제 운영 시스템은 GitHub Pages와 별도로 구축해야 합니다. Hermes 공식 기능과 이 서비스에 제안한 설계는 본문에서 구분합니다.
+
+## 정치·연예 뉴스 사례 연구
+
+추상적인 서비스 설계를 실제 결과로 연결하기 위해 2026-10-25 KST 기준의 수동 웹 리서치 사례를 추가했습니다.
+
+| 페이지 | 내용 |
+| --- | --- |
+| [사례 비교와 결과](case-studies.html) | 분야별 3개 이슈, 요구사항 비교, 조사 방법·지표의 한계 |
+| [정치·정책 사례](case-politics.html) | CPTPP 연내 신청 지시, 규제합리화, 군사당국회담 제안 |
+| [연예·문화 사례](case-entertainment.html) | BIFF 수상 결과, MAMA 후보 콘텐츠·행사 일정, TWS 발매 공지 |
+
+- [핵심 주장 20개와 출처 레코드 12개](data/news-case-studies-2026-10-25.json)
+- [회귀 입력과 기대 동작 20개](data/news-evaluation-2026-10-25.json)
+
+실제 원문을 열람해 편집한 참고 결과이며, Hermes 자동 실행 결과나 성능 평가가 아닙니다. 전체 뉴스의 순위·대표성·정치적 균형을 측정한 표본도 아닙니다. 공식 발표·배경 자료·언론 보도를 구분하고, 원문의 공개 날짜와 사건 날짜·예정 상태를 따로 기록했습니다. 정부 첨부 원문도 확인했으며 원문 전체·뉴스 사진은 저장소에 재배포하지 않습니다. 회귀 입력에는 실제 사건과 구분한 합성 보안 테스트가 포함되어 있습니다.
 
 ## 0. 시작 전 준비
 
@@ -238,6 +253,9 @@ HTML 페이지는 설치 방법을 설명하는 정적 문서입니다. 로그�
 - `index.html`: 기본 설치 가이드와 연동 페이지 바로가기; 설치용 JavaScript 포함
 - `telegram.html`, `web-ui.html`, `open-webui.html`, `nextchat.html`, `lobechat.html`: 추가 연결 안내 페이지
 - `service-design.html`: 다중 사용자 정보 탐색 서비스의 요구사항·설계 제안
+- `case-studies.html`, `case-politics.html`, `case-entertainment.html`: 실제 원문에 기반한 사례 연구
+- `data/news-*.json`: 주장·출처와 미실행 회귀 평가 입력
+- `assets/case-studies.js`: 고정 사례 카드의 분야별 필터
 - `assets/guide.css`: 모든 HTML 페이지가 사용하는 공통 색상·타이포그래피·반응형 스타일
 - `assets/guide.js`: 추가 페이지의 복사·목차 기능
 - `assets/navigation.js`: 공통 웹 UI 펼침 메뉴의 Escape·바깥 클릭·포커스 처리; JavaScript 없이도 펼치기와 링크 이동 가능

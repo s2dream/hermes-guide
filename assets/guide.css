@@ -84,3 +84,15 @@ a.directory-card:hover{border-color:#9eaf95;color:var(--ink)}
 @media(max-width:700px){.nav-group{position:static}.nav-panel{right:22px;top:calc(100% - 1px)}}
 @media(max-width:360px){.nav-panel{right:16px}}
 .service-content .callout p strong{display:inline;font-size:inherit;margin:0}
+
+/* Evidence-backed case studies; the news cards are dated snapshots. */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.news-card{padding:21px;border:1px solid var(--line);border-radius:7px;background:var(--white);margin-top:22px}.case-grid .news-card{margin-top:0}.news-card[hidden]{display:none}
+.news-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:12px}.news-state{display:inline-block;border:1px solid #becbb2;background:var(--green-soft);padding:3px 8px;border-radius:4px;color:var(--green);font-weight:700}
+.case-content .news-card h3{font-size:19px;margin-top:0}.news-card h3 a{text-decoration:none}.news-card>p{font-size:13px;margin-top:12px}.news-card>p>a{font-size:12px;font-weight:650}
+.claim-list{padding-left:22px;margin-top:20px}.claim-list li{padding:7px 0;font-size:14px}.claim-list li>strong{font-family:var(--mono);font-size:11px;color:var(--green);margin-right:5px}.evidence-ref{font-size:11px;white-space:nowrap;text-decoration:none;font-family:var(--mono)}
+.case-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.case-filters[hidden]{display:none}.case-filters button{border:1px solid var(--line);border-radius:5px;padding:8px 13px;background:var(--white);font-size:12px;color:var(--green)}.case-filters button[aria-pressed=true]{background:var(--green);border-color:var(--green);color:var(--white)}
+.source-record{border-top:1px solid var(--line);padding:22px 0;scroll-margin-top:110px}.case-content .source-record h3{font-size:18px;margin-top:0}.source-record p{font-size:12px;color:var(--muted);margin-top:10px}.case-home-link{font-size:13px;margin-top:18px;font-weight:650}
+@media(max-width:700px){.case-grid{grid-template-columns:1fr}.news-card{padding:17px}.case-content .news-card h3{font-size:18px}.claim-list li{font-size:13px}.source-record{scroll-margin-top:90px}}
+@media(max-width:480px){.primary-nav{gap:12px}.primary-link{gap:5px}}
+@media print{.case-filters{display:none}.case-grid{display:block}.news-card{break-inside:avoid}.source-record{break-inside:avoid}}

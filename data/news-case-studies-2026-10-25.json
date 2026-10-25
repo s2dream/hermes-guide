@@ -1,0 +1,619 @@
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "title": "정치·정책과 연예·문화 뉴스 사례 연구",
+    "reference_date": "2026-10-25",
+    "timezone": "Asia/Seoul",
+    "compiled_at": "2026-10-25T11:14:44+09:00",
+    "method": "manual_web_research_and_editorial_reference",
+    "hermes_executed": false,
+    "live_news_service": false,
+    "coverage": "사전 정의한 상태 구분을 설명하기 위해 선택한 6개 이슈. 전체 뉴스·인기도·정치적 대표성 표본이 아님",
+    "core_period": "2026-10-01~2026-10-25의 발표·행사·판매 시작을 중심으로 선정",
+    "context_rule": "이전 자료는 배경으로, 게시일 미상 자료는 미상으로 표시. 미래 일정은 예정 상태로 유지",
+    "limitations": [
+      "정부 발표 중심 정치 표본으로 여야·북측·농어민 단체의 종합 반응을 조사한 결과가 아님",
+      "핵심 주장과 원문 연결을 검토했으나 세계의 사실 정확도를 100% 측정한 실험이 아님",
+      "실제 Hermes 실행·토큰·응답 시간·추론 비용·사용자 만족도는 측정하지 않음"
+    ]
+  },
+  "sources": [
+    {
+      "id": "P-S1",
+      "title": "CPTPP 가입 관련 대통령 지시 사항 서면 브리핑",
+      "publisher": "대한민국 청와대",
+      "published_at": "2026-10-08",
+      "url": "https://www.president.go.kr/briefings/BAnjajsK",
+      "kind": "primary",
+      "origin_group": "presidential-cptpp-statement",
+      "publisher_group": "kr-government",
+      "access": "공식 브리핑 본문 확인",
+      "locator": "연내 신청 지시·농어민 대화·기금 재정 확보 예정 문단",
+      "retrieved_at": "2026-10-25T11:14:43+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "page_text"
+    },
+    {
+      "id": "P-S2",
+      "title": "규제합리화위원회 제2차 전체회의 보도자료",
+      "publisher": "국무조정실 / 정책브리핑",
+      "published_at": "2026-10-23",
+      "url": "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156786291",
+      "kind": "primary",
+      "origin_group": "opm-regulatory-meeting",
+      "publisher_group": "kr-government",
+      "access": "공식 HWPX 첨부 원문 추출 및 모바일 본문 확인",
+      "attachment_url": "https://www.korea.kr/common/download.do?fileId=198576039&tblKey=GMN",
+      "locator": "회의 개최 문단 / 초광역특구법·메뉴판식 특례 문단",
+      "date_note": "첨부 배포 표기는 10월 22일, 보도 시점과 회의는 10월 23일. 파일명 날짜를 행사일로 쓰지 않음",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "official_attachment"
+    },
+    {
+      "id": "P-S3",
+      "title": "비무장지대 군사분계선 관련 군사당국회담 제안을 위한 담화",
+      "publisher": "국방부 / 정책브리핑",
+      "published_at": "2026-10-23",
+      "url": "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156786306",
+      "kind": "primary",
+      "origin_group": "mnd-talks-proposal",
+      "publisher_group": "kr-government",
+      "access": "공식 목록·게시일 확인 후 HWPX 첨부 원문 추출",
+      "attachment_url": "https://www.korea.kr/common/download.do?fileId=198576161&tblKey=GMN",
+      "locator": "후반부 공식 제안·의제·3자회담 조건·일정 및 장소 협의 문단",
+      "retrieved_at": "2026-10-25T11:14:43+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "official_attachment"
+    },
+    {
+      "id": "P-S4",
+      "title": "국방부, 북에 군사당국회담 제안",
+      "publisher": "대한민국 정책브리핑",
+      "published_at": "2026-10-23",
+      "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148974228",
+      "kind": "official_derivative",
+      "origin_group": "mnd-talks-proposal",
+      "publisher_group": "kr-government",
+      "access": "공식 정책뉴스 HTML 본문 확인",
+      "locator": "제안과 판문점을 통한 협의 인용 부분",
+      "independence_note": "P-S3과 같은 국방부 발표를 정리한 글. 독립된 두 번째 사건 증언으로 세지 않음",
+      "retrieved_at": "2026-10-25T11:14:43+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "cross_check",
+      "extraction_mode": "page_text"
+    },
+    {
+      "id": "P-S5",
+      "title": "李 “CPTPP 연내 가입신청 말라…농어민과 충분히 대화”",
+      "publisher": "동아일보",
+      "published_at": "2026-10-08T16:21:00+09:00",
+      "updated_at": "2026-10-08T16:59:00+09:00",
+      "url": "https://www.donga.com/news/Politics/article/all/20261008/134810299/1",
+      "kind": "journalism",
+      "origin_group": "presidential-cptpp-statement",
+      "publisher_group": "donga",
+      "access": "기사 본문·입력 및 업데이트 시각 확인",
+      "locator": "서면 브리핑을 전하는 본문",
+      "independence_note": "별도 언론사 기사지만 해당 지시의 근거는 같은 브리핑. 원문 확인 수를 독립 검증 수로 바꾸지 않음",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "cross_check",
+      "extraction_mode": "page_text"
+    },
+    {
+      "id": "E-S1",
+      "title": "제31회 BIFF 부산 어워드·뉴 커런츠상 수상작 발표",
+      "publisher": "부산국제영화제",
+      "published_at": "2026-10-16T09:24:00+09:00",
+      "url": "https://www.biff.kr/kor/artyboard/mboard.asp?Action=view&intSeq=103421&strBoardID=9611_01",
+      "kind": "primary",
+      "origin_group": "biff-2026-awards",
+      "publisher_group": "biff",
+      "access": "공식 보도자료 본문 확인",
+      "locator": "10월 15일 폐막과 수상 결과 목록",
+      "date_note": "게시일은 10월 16일, 폐막·시상일은 10월 15일",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "page_text"
+    },
+    {
+      "id": "E-S2",
+      "title": "제31회 BIFF 전체 수상작·수상자 리스트",
+      "publisher": "부산국제영화제",
+      "published_at": null,
+      "url": "https://www.biff.kr/kor/addon/10000001/page.asp?page_num=10778",
+      "kind": "primary",
+      "origin_group": "biff-2026-awards",
+      "publisher_group": "biff",
+      "access": "공식 수상 표 확인",
+      "locator": "폐막식 시상: 대상·뉴 커런츠상·특별 언급",
+      "date_note": "현재 목록 자체의 게시 시각은 확인하지 못함. E-S1의 행사일과 구분",
+      "retrieved_at": "2026-10-25T11:14:43+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "page_text"
+    },
+    {
+      "id": "E-S3",
+      "title": "NOMINATION TRAILER | 2026 MAMA AWARDS",
+      "publisher": "2026 MAMA AWARDS / Mnet Plus",
+      "published_at": "2026-10-08",
+      "url": "https://mnetplus.world/media/en/videos/6ac6daf970073025ba952614",
+      "kind": "primary",
+      "origin_group": "mama-2026-announcements",
+      "publisher_group": "cj-enm",
+      "access": "공식 영상 페이지의 제목·게시일·설명 확인; 영상 전체 시청 검증은 하지 않음",
+      "locator": "10월 12일 18:00 KST 후보 공개 예고 설명",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "metadata_only"
+    },
+    {
+      "id": "E-S4",
+      "title": "Nominees | BEST CHOREOGRAPHY",
+      "publisher": "2026 MAMA AWARDS / Mnet Plus",
+      "published_at": "2026-10-12",
+      "url": "https://mnetplus.world/media/en/videos/6accaded96cca21d7a3550ba",
+      "kind": "primary",
+      "origin_group": "mama-2026-announcements",
+      "publisher_group": "cj-enm",
+      "access": "공식 후보 영상 페이지 메타데이터 확인; 출연자 전체 명단은 전사하지 않음",
+      "locator": "영상 제목·2026.10.12 게시 표기",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "metadata_only"
+    },
+    {
+      "id": "E-S5",
+      "title": "2026 MAMA AWARDS 11월 일본 오사카 개최 확정",
+      "publisher": "CJ ENM",
+      "published_at": "2026-03-31",
+      "url": "https://www.cjenm.com/ko/news/2026-mama-awards-11%EC%9B%94-%EC%9D%BC%EB%B3%B8-%EC%98%A4%EC%82%AC%EC%B9%B4-%EA%B0%9C%EC%B5%9C-%ED%99%95%EC%A0%95-%EC%97%A0%EB%84%B7%ED%94%8C%EB%9F%AC%EC%8A%A4-%ED%86%B5%ED%95%B4-%EC%A0%84-%EC%84%B8%EA%B3%84-%EC%83%9D%EC%A4%91%EA%B3%84/",
+      "kind": "primary",
+      "origin_group": "mama-2026-announcements",
+      "publisher_group": "cj-enm",
+      "access": "공식 주최사 뉴스룸 본문 확인",
+      "locator": "11월 20~21일 교세라 돔 오사카 개최 및 중계 안내",
+      "date_note": "3월 자료는 10월 새 뉴스가 아니라 행사 일정의 배경 근거로만 사용",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "background",
+      "extraction_mode": "page_text"
+    },
+    {
+      "id": "E-S6",
+      "title": "TWS 2nd Single Album 'TO US' 발매 및 예약 판매 안내",
+      "publisher": "플레디스 엔터테인먼트 / TWS Weverse",
+      "published_at": null,
+      "url": "https://weverse.io/tws/notice/39810?hl=ko",
+      "kind": "primary",
+      "origin_group": "tws-to-us-notice",
+      "publisher_group": "pledis",
+      "access": "소속사 명의 공식 공지 본문 확인",
+      "locator": "앨범명·예약 판매 일시·앨범 발매 일시 항목",
+      "date_note": "열람된 본문에 공지 게시일이 없어 미상으로 기록. 10월 7일은 예약 판매 시작일이지 게시일 추정값이 아님",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "core_evidence",
+      "extraction_mode": "page_text"
+    },
+    {
+      "id": "E-S7",
+      "title": "부국제 관객 20만 돌파‥'빵과 책' 대상",
+      "publisher": "MBC 뉴스투데이",
+      "published_at": "2026-10-16T06:41:00+09:00",
+      "updated_at": "2026-10-16T06:46:00+09:00",
+      "url": "https://imnews.imbc.com/replay/2026/nwtoday/article/6858355_37013.html",
+      "kind": "journalism",
+      "origin_group": "biff-2026-mbc-report",
+      "publisher_group": "mbc",
+      "access": "기사·방송 리포트 텍스트 확인",
+      "locator": "폐막·대상 수상작을 전하는 앵커 및 리포트 문단",
+      "independence_note": "주최사 외 매체의 보도 비교용. 흥행 수치·평가 등 이번 핵심 주장에 넣지 않은 내용은 확대 재생산하지 않음",
+      "retrieved_at": "2026-10-25T11:14:44+09:00",
+      "http_status": 200,
+      "content_reviewed_on": "2026-10-25",
+      "source_role": "cross_check",
+      "extraction_mode": "page_text"
+    }
+  ],
+  "claims": [
+    {
+      "id": "P-C01",
+      "domain": "politics",
+      "story_id": "cptpp",
+      "text": "청와대는 대통령이 CPTPP 가입을 2026년 안에 신청하지 않도록 지시했다고 10월 8일 밝혔다.",
+      "source_ids": [
+        "P-S1"
+      ],
+      "state": "instruction_announced",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "가입 자체의 영구 포기나 이후 협상 결론으로 확대하지 않음"
+    },
+    {
+      "id": "P-C02",
+      "domain": "politics",
+      "story_id": "cptpp",
+      "text": "같은 브리핑은 관련 부처에 농어민 의견을 충분히 듣고 지속적으로 대화할 것을 당부했다고 설명했다.",
+      "source_ids": [
+        "P-S1"
+      ],
+      "state": "official_position",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "전체 농어민의 찬반이나 대화 완료를 뜻하지 않음"
+    },
+    {
+      "id": "P-C03",
+      "domain": "politics",
+      "story_id": "cptpp",
+      "text": "같은 브리핑은 농어촌상생협력기금의 부족분 7천억 원을 정부 재정으로 확보할 예정이라고 설명했다.",
+      "source_ids": [
+        "P-S1"
+      ],
+      "state": "funding_plan",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "예산 의결·실제 출연·집행 완료를 확인한 주장이 아님"
+    },
+    {
+      "id": "P-C04",
+      "domain": "politics",
+      "story_id": "regulation",
+      "text": "국무조정실 자료는 규제합리화위원회 제2차 전체회의가 10월 23일 오후 2시에 열렸다고 밝혔다.",
+      "source_ids": [
+        "P-S2"
+      ],
+      "state": "meeting_reported",
+      "event_at": "2026-10-23T14:00:00+09:00",
+      "verification": "attributed_source_explicit",
+      "limits": ""
+    },
+    {
+      "id": "P-C05",
+      "domain": "politics",
+      "story_id": "regulation",
+      "text": "정부는 이 회의 자료에서 초광역특구법 제정을 추진한다고 설명했다.",
+      "source_ids": [
+        "P-S2"
+      ],
+      "state": "legislative_plan",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "국회 통과·공포·시행 확인과 구분"
+    },
+    {
+      "id": "P-C06",
+      "domain": "politics",
+      "story_id": "regulation",
+      "text": "자료에 제시된 초광역특구 구상에는 320여 개의 메뉴판식 규제특례가 포함된다.",
+      "source_ids": [
+        "P-S2"
+      ],
+      "state": "announced_design",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "320개 정확치로 고치거나 모두 적용 중이라고 표현하지 않음"
+    },
+    {
+      "id": "P-C07",
+      "domain": "politics",
+      "story_id": "talks",
+      "text": "국방부는 10월 23일 담화를 통해 북측에 군사당국회담을 공식 제안했다.",
+      "source_ids": [
+        "P-S3"
+      ],
+      "state": "talks_proposed",
+      "event_at": "2026-10-23",
+      "verification": "attributed_source_explicit",
+      "limits": "북측 수락·회담 개최·공동 합의는 이 자료로 확인되지 않음"
+    },
+    {
+      "id": "P-C08",
+      "domain": "politics",
+      "story_id": "talks",
+      "text": "제안 의제는 지상 군사분계선 위치 확인, 군통신선 복원, 접경지역 우발충돌 방지 방안이다.",
+      "source_ids": [
+        "P-S3"
+      ],
+      "state": "proposed_agenda",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "의제 제안과 복원·합의 완료는 다름"
+    },
+    {
+      "id": "P-C09",
+      "domain": "politics",
+      "story_id": "talks",
+      "text": "담화는 필요하다면 유엔군사령부를 포함한 3자회담도 가능하다고 밝혔다.",
+      "source_ids": [
+        "P-S3"
+      ],
+      "state": "conditional_option",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "3자회담 개최 확정으로 쓰지 않음"
+    },
+    {
+      "id": "P-C10",
+      "domain": "politics",
+      "story_id": "talks",
+      "text": "담화는 구체적인 일정과 장소 등을 판문점을 통해 협의할 수 있다고 설명했다.",
+      "source_ids": [
+        "P-S3"
+      ],
+      "state": "details_to_consult",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "판문점을 확정된 회담 장소로 바꾸지 않음"
+    },
+    {
+      "id": "E-C01",
+      "domain": "entertainment",
+      "story_id": "biff",
+      "text": "BIFF 공식 보도자료는 제31회 영화제가 10월 15일 폐막했고 폐막식에서 경쟁부문 수상 결과를 발표했다고 설명한다.",
+      "source_ids": [
+        "E-S1"
+      ],
+      "state": "award_results_announced",
+      "event_at": "2026-10-15",
+      "verification": "attributed_source_explicit",
+      "limits": ""
+    },
+    {
+      "id": "E-C02",
+      "domain": "entertainment",
+      "story_id": "biff",
+      "text": "공식 발표와 수상 표에 따르면 부산 어워드 대상은 마지드 마지디 감독의 <빵과 책>이다.",
+      "source_ids": [
+        "E-S1",
+        "E-S2"
+      ],
+      "state": "awarded",
+      "event_at": "2026-10-15",
+      "verification": "attributed_source_explicit",
+      "limits": ""
+    },
+    {
+      "id": "E-C03",
+      "domain": "entertainment",
+      "story_id": "biff",
+      "text": "뉴 커런츠상 수상작은 샤샹크 왈리아 감독의 <어둠 속의 새들>로 기재되어 있다.",
+      "source_ids": [
+        "E-S1",
+        "E-S2"
+      ],
+      "state": "awarded",
+      "event_at": "2026-10-15",
+      "verification": "attributed_source_explicit",
+      "limits": ""
+    },
+    {
+      "id": "E-C04",
+      "domain": "entertainment",
+      "story_id": "biff",
+      "text": "임하연 감독의 <그날의 태주>는 뉴 커런츠상 특별 언급으로 별도 표기되어 있다.",
+      "source_ids": [
+        "E-S1",
+        "E-S2"
+      ],
+      "state": "special_mention",
+      "event_at": "2026-10-15",
+      "verification": "attributed_source_explicit",
+      "limits": "공동 수상이나 대상 수상으로 바꾸지 않음"
+    },
+    {
+      "id": "E-C05",
+      "domain": "entertainment",
+      "story_id": "mama",
+      "text": "Mnet Plus의 후보 공개 예고 페이지는 10월 8일 게시되었고 10월 12일 18:00 KST 공개를 안내한다.",
+      "source_ids": [
+        "E-S3"
+      ],
+      "state": "nomination_teaser",
+      "event_at": "2026-10-12T18:00:00+09:00",
+      "verification": "attributed_source_explicit",
+      "limits": "예고만으로 전체 후보 명단과 실제 방송 내용을 검증했다고 하지 않음"
+    },
+    {
+      "id": "E-C06",
+      "domain": "entertainment",
+      "story_id": "mama",
+      "text": "Mnet Plus 공식 채널에서 BEST CHOREOGRAPHY 후보 영상의 10월 12일 게시 표기를 확인했다.",
+      "source_ids": [
+        "E-S4"
+      ],
+      "state": "nominee_content_published",
+      "event_at": "2026-10-12",
+      "verification": "attributed_source_explicit",
+      "limits": "페이지 메타데이터 확인이며 영상 전체 내용·모든 후보 명단 확인은 아님"
+    },
+    {
+      "id": "E-C07",
+      "domain": "entertainment",
+      "story_id": "mama",
+      "text": "CJ ENM은 2026 MAMA AWARDS를 11월 20~21일 일본 교세라 돔 오사카에서 개최한다고 안내했다.",
+      "source_ids": [
+        "E-S5",
+        "E-S3"
+      ],
+      "state": "scheduled_event",
+      "event_at": "2026-11-20",
+      "verification": "attributed_source_explicit",
+      "limits": "기준일보다 뒤의 일정이며 수상 결과·행사 개최 완료를 뜻하지 않음"
+    },
+    {
+      "id": "E-C08",
+      "domain": "entertainment",
+      "story_id": "tws",
+      "text": "플레디스 명의 TWS 공식 공지에 적힌 예약 판매 시작은 10월 7일 11:00 KST다.",
+      "source_ids": [
+        "E-S6"
+      ],
+      "state": "presale_start_announced",
+      "event_at": "2026-10-07T11:00:00+09:00",
+      "verification": "attributed_source_explicit",
+      "limits": "공지 게시일·현재 재고·예약 종료일과 구분"
+    },
+    {
+      "id": "E-C09",
+      "domain": "entertainment",
+      "story_id": "tws",
+      "text": "같은 공지의 앨범 발매 예정 시각은 11월 2일 18:00 KST다.",
+      "source_ids": [
+        "E-S6"
+      ],
+      "state": "scheduled_release",
+      "event_at": "2026-11-02T18:00:00+09:00",
+      "verification": "attributed_source_explicit",
+      "limits": "10월 25일 기준 발매 완료나 판매 성과를 확인한 것이 아님"
+    },
+    {
+      "id": "E-C10",
+      "domain": "entertainment",
+      "story_id": "tws",
+      "text": "공지의 대상은 TWS의 두 번째 싱글 앨범 'TO US'다.",
+      "source_ids": [
+        "E-S6"
+      ],
+      "state": "product_announced",
+      "event_at": null,
+      "verification": "attributed_source_explicit",
+      "limits": "정규 앨범·동명 타 아티스트 작품과 혼동하지 않음"
+    }
+  ],
+  "metrics": {
+    "retained_source_records": 12,
+    "primary_source_records": 9,
+    "core_claims": 20,
+    "claims_with_source_ids": 20,
+    "missing_publication_dates": [
+      "E-S2",
+      "E-S6"
+    ],
+    "hermes_latency_ms": null,
+    "hermes_cost": null
+  },
+  "stories": [
+    {
+      "id": "cptpp",
+      "domain": "politics",
+      "headline": "CPTPP 연내 신청 지시 발표",
+      "editorial_summary": "가입 신청 시점에 관한 지시와 영구 포기·예산 집행을 구분한다.",
+      "state_summary": "instruction_announced",
+      "claim_ids": [
+        "P-C01",
+        "P-C02",
+        "P-C03"
+      ],
+      "source_ids": [
+        "P-S1"
+      ],
+      "detail_path": "case-politics.html#cptpp"
+    },
+    {
+      "id": "regulation",
+      "domain": "politics",
+      "headline": "규제합리화위원회와 초광역특구법 제정 추진",
+      "editorial_summary": "회의 개최와 320여 개 특례 구상을 법률 시행으로 바꾸지 않는다.",
+      "state_summary": "legislative_plan",
+      "claim_ids": [
+        "P-C04",
+        "P-C05",
+        "P-C06"
+      ],
+      "source_ids": [
+        "P-S2"
+      ],
+      "detail_path": "case-politics.html#regulation"
+    },
+    {
+      "id": "talks",
+      "domain": "politics",
+      "headline": "국방부 군사당국회담 제안",
+      "editorial_summary": "의제·협의 가능성과 개최·수락·장소 확정을 구분한다.",
+      "state_summary": "talks_proposed",
+      "claim_ids": [
+        "P-C07",
+        "P-C08",
+        "P-C09",
+        "P-C10"
+      ],
+      "source_ids": [
+        "P-S3"
+      ],
+      "detail_path": "case-politics.html#talks"
+    },
+    {
+      "id": "biff",
+      "domain": "entertainment",
+      "headline": "제31회 BIFF 주요 수상 결과",
+      "editorial_summary": "대상·뉴 커런츠상·특별 언급, 시상일·게시일을 각각 보존한다.",
+      "state_summary": "award_results_announced",
+      "claim_ids": [
+        "E-C01",
+        "E-C02",
+        "E-C03",
+        "E-C04"
+      ],
+      "source_ids": [
+        "E-S1",
+        "E-S2"
+      ],
+      "detail_path": "case-entertainment.html#biff"
+    },
+    {
+      "id": "mama",
+      "domain": "entertainment",
+      "headline": "2026 MAMA 후보 콘텐츠와 개최 예정",
+      "editorial_summary": "공식 페이지에서 확인한 콘텐츠 게시와 11월 개최 안내를 구분한다.",
+      "state_summary": "nominee_content_and_scheduled_event",
+      "claim_ids": [
+        "E-C05",
+        "E-C06",
+        "E-C07"
+      ],
+      "source_ids": [
+        "E-S3",
+        "E-S4",
+        "E-S5"
+      ],
+      "detail_path": "case-entertainment.html#mama"
+    },
+    {
+      "id": "tws",
+      "domain": "entertainment",
+      "headline": "TWS 싱글 'TO US' 공지",
+      "editorial_summary": "10월 예약 시작과 11월 발매 예정, 게시일 미상을 분리한다.",
+      "state_summary": "scheduled_release",
+      "claim_ids": [
+        "E-C08",
+        "E-C09",
+        "E-C10"
+      ],
+      "source_ids": [
+        "E-S6"
+      ],
+      "detail_path": "case-entertainment.html#tws"
+    }
+  ]
+}
