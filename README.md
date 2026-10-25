@@ -1,10 +1,10 @@
 # hermes-guide
 
-Ubuntu에서 Hermes Agent를 설치하고 ChatGPT/Codex 또는 Google Gemini를 연결한 뒤, 텔레그램과 웹 UI로 사용하는 비공식 한국어 가이드입니다.
+Hermes Agent의 Ubuntu 설치·모델 설정부터 텔레그램·웹 UI 연동, 다중 사용자 정보 탐색 서비스의 요구사항과 설계까지 다루는 비공식 한국어 가이드입니다.
 
 ## 가이드 보기
 
-웹사이트는 [GitHub Pages](https://s2dream.github.io/hermes-guide/)에서 볼 수 있습니다. 상단 메뉴는 Ubuntu 설치, 텔레그램, 웹 UI의 세 범주로 구성되어 있습니다. 웹 UI 메뉴를 펼치면 비교 페이지와 제품별 연결 안내로 이동할 수 있습니다.
+웹사이트는 [GitHub Pages](https://s2dream.github.io/hermes-guide/)에서 볼 수 있습니다. 상단 메뉴는 Ubuntu 설치, 텔레그램, 웹 UI, 서비스 설계의 네 범주로 구성되어 있습니다. 웹 UI 메뉴를 펼치면 비교 페이지와 제품별 연결 안내로 이동할 수 있습니다.
 
 - **GitHub에서 읽기:** 이 README에서 설치 과정과 문제 해결 방법을 바로 읽을 수 있습니다.
 - **디자인된 가이드 보기:** 저장소 전체를 내려받아 [index.html](index.html)을 본인 컴퓨터의 웹브라우저에서 여세요. 추가 페이지의 `assets/`와 상대 링크를 유지해야 합니다. 별도 서버나 빌드가 필요하지 않습니다.
@@ -35,6 +35,19 @@ AnythingLLM, LibreChat, Hermes WebUI, Hugging Face Chat UI도 비교 페이지�
 추가 안내는 [Hermes Telegram 문서](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram), [Hermes API 서버 문서](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server), [Open WebUI 연동 문서](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/open-webui), 각 UI의 공식 문서·소스를 확인해 작성했습니다. NextChat와 LobeHub는 OpenAI 호환 엔드포인트 설정을 조합한 안내입니다. 실제 설치·로그인 및 모든 부가 기능의 호환성을 검증한 것은 아닙니다.
 
 웹 UI 3개는 Hermes와 Docker Engine이 같은 Ubuntu에 있는 구성입니다. Docker 브리지 주소에 Hermes API를 바인딩하고 `host.docker.internal`을 매핑하는 공통 준비를 먼저 따르세요. 각 UI의 환경 파일은 저장소 밖에 보관합니다.
+
+## 정보 탐색 서비스 설계
+
+[서비스 설계 가이드](service-design.html)에서는 Hermes를 자체 UI로 여러 사용자가 쓰는 정보 탐색 서비스로 만들기 위한 설계 제안을 다룹니다.
+
+- 사용자 대상·자료 범위·규모에 관한 가정과 결정 항목
+- 기능 요구사항과 완료 기준, 사용자 흐름과 화면 구성 예시
+- 서비스 API·영속 대기열·사용자별 Hermes 실행 환경의 책임 분리
+- 계정·데이터·메모리·도구·네트워크 격리와 근거 수집·검증
+- 자체 API 계약 초안, 실행·이벤트·취소·장애 복구
+- 데이터 모델·보존·예산·관측, 단계별 개발과 출시 평가
+
+기본안은 초대형 공개 웹 탐색 MVP입니다. 사용자 10명·동시 작업 3개 등의 수치는 논의를 위한 제안이며 측정 결과나 확정 요구사항이 아닙니다. 현재 저장소에는 서비스 백엔드·회원 시스템·조사 API가 구현되어 있지 않습니다. 실제 운영 시스템은 GitHub Pages와 별도로 구축해야 합니다. Hermes 공식 기능과 이 서비스에 제안한 설계는 본문에서 구분합니다.
 
 ## 0. 시작 전 준비
 
@@ -224,6 +237,7 @@ HTML 페이지는 설치 방법을 설명하는 정적 문서입니다. 로그�
 
 - `index.html`: 기본 설치 가이드와 연동 페이지 바로가기; 설치용 JavaScript 포함
 - `telegram.html`, `web-ui.html`, `open-webui.html`, `nextchat.html`, `lobechat.html`: 추가 연결 안내 페이지
+- `service-design.html`: 다중 사용자 정보 탐색 서비스의 요구사항·설계 제안
 - `assets/guide.css`: 모든 HTML 페이지가 사용하는 공통 색상·타이포그래피·반응형 스타일
 - `assets/guide.js`: 추가 페이지의 복사·목차 기능
 - `assets/navigation.js`: 공통 웹 UI 펼침 메뉴의 Escape·바깥 클릭·포커스 처리; JavaScript 없이도 펼치기와 링크 이동 가능
